@@ -6,9 +6,11 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody m_Rigidbody;
+    private MainManager mainManager;
 
     void Start()
     {
+        mainManager = GameObject.Find("Main Manager").GetComponent<MainManager>();
         m_Rigidbody = GetComponent<Rigidbody>();
     }
     
@@ -26,7 +28,7 @@ public class Ball : MonoBehaviour
         }
 
         //max velocity
-        if (velocity.magnitude > 3.0f)
+        if (velocity.magnitude > (Mathf.Min(mainManager.roundCount * 0.2f, 3f)) * 3.0f)
         {
             velocity = velocity.normalized * 3.0f;
         }
