@@ -1,11 +1,4 @@
-using System.Collections;
-using System.Text.RegularExpressions;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.Windows;
 
 class JsonSaveHighscore
 {

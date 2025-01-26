@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 
 public class HighScore : MonoBehaviour
