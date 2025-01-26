@@ -95,6 +95,7 @@ public class Manager : MonoBehaviour
     {
         MenuManager.Instance.volume = volumeSlider.value;
         VolumeData volumeData = new VolumeData { volume = MenuManager.Instance.volume };
+        SaveSystem.SaveData(volumeData, SaveSystem.gameSettingsSave);
     }
     IEnumerator BlinkingTitle()
     {

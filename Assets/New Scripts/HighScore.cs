@@ -17,33 +17,36 @@ public class HighScore : MonoBehaviour
         List<HighscoreEntry> highscores = SaveSystem.DisplayHighscores(SaveSystem.highscoreSave);
 
         int index = 0;
-        foreach (HighscoreEntry entry in highscores)
+        if (highscores != null)
         {
-            highscoreTexts[index].text = entry.playerName + " " + entry.score;
-
-            if (MenuManager.Instance != null && entry.playerName == MenuManager.Instance.playerName && MenuManager.Instance.score == entry.score)
+            foreach (HighscoreEntry entry in highscores)
             {
-                StartCoroutine(BlinkText(highscoreTexts[index]));
-            }
+                highscoreTexts[index].text = entry.playerName + " " + entry.score;
 
-            index++;
-            if(index > highscoreTexts.Length - 1)
-            {
-                break;
+                if (MenuManager.Instance != null && entry.playerName == MenuManager.Instance.playerName && MenuManager.Instance.score == entry.score)
+                {
+                    StartCoroutine(BlinkText(highscoreTexts[index]));
+                }
+
+                index++;
+                if (index > highscoreTexts.Length - 1)
+                {
+                    break;
+                }
             }
         }
-        if (Regex.IsMatch(MenuManager.Instance.playerName, @"^[a-zA-Z]+$"))
+        if (!Regex.IsMatch(MenuManager.Instance.playerName, @"^[a-zA-Z]+$"))
         {
             restartTipText.SetActive(false);
         }
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Regex.IsMatch(MenuManager.Instance.playerName, @"^[a-zA-Z]+$"))
         {
             SceneManager.LoadScene(1);
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && restartTipText.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) )
         {
             SceneManager.LoadScene(0);
         }
